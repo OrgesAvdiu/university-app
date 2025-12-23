@@ -6,7 +6,7 @@ import AdminDashboard from './pages/AdminDashboard'
 import StudentDashboard from './pages/StudentDashboard'
 import ProfessorDashboard from './pages/ProfessorDashboard'
 
-const api = axios.create({ baseURL: 'http://localhost:8000/api' })
+const api = axios.create({ baseURL: 'https://orges.pythonanywhere.com/api' })
 
 function ProtectedRoute({ children }) {
   const token = localStorage.getItem('token')
