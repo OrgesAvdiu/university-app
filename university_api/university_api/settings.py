@@ -99,6 +99,8 @@ CORS_ALLOWED_ORIGINS = [
     'https://university-app-orges.vercel.app',
 ]
 CORS_ALLOW_CREDENTIALS = False
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_URLS_REGEX = r'^/api/.*$'
 CORS_ALLOW_HEADERS = [
     'accept',
     'accept-language',
