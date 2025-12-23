@@ -99,3 +99,5 @@ CORS_ALLOWED_ORIGINS = [
     'https://university-app-orges.vercel.app',
 ]
 CORS_ALLOW_CREDENTIALS = True
+# Allow all origins for deployed frontend to avoid preflight failures
+CORS_ALLOW_ALL_ORIGINS = True
