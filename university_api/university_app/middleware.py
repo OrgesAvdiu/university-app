@@ -1,3 +1,5 @@
+from django.http import HttpResponse
+
 class CORSMiddleware:
     """
     Custom CORS middleware to add Access-Control-Allow-Origin header
@@ -7,11 +9,20 @@ class CORSMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        response = self.get_response(request)
+        # Handle OPTIONS preflight requests
+        if request.method == 'OPTIONS':
+            response = HttpResponse()
+            self._add_cors_headers(response)
+            return response
         
-        # Add CORS headers to all responses
+        response = self.get_response(request)
+        self._add_cors_headers(response)
+        return response
+    
+    def _add_cors_headers(self, response):
+        """Add CORS headers to response"""
         response['Access-Control-Allow-Origin'] = '*'
         response['Access-Control-Allow-Methods'] = 'GET, POST, PUT, PATCH, DELETE, OPTIONS'
-        response['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, X-Requested-With'
-        
+        response['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, X-Requested-With, Origin'
+        response['Access-Control-Max-Age'] = '3600'
         return response
