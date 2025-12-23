@@ -9,7 +9,12 @@ export default function Login({ api, onLogin }) {
     e.preventDefault()
     setError(null)
     try {
-      const res = await api.post('/auth/token/', { username, password })
+      const params = new URLSearchParams()
+      params.append('username', username)
+      params.append('password', password)
+      const res = await api.post('/auth/token/', params, {
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+      })
       onLogin(res.data.access)
     } catch (err) {
       console.error('Login error:', err)
