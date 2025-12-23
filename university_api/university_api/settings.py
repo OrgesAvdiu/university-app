@@ -23,9 +23,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -99,3 +99,24 @@ CORS_ALLOWED_ORIGINS = [
     'https://university-app-orges.vercel.app',
 ]
 CORS_ALLOW_CREDENTIALS = False
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-language',
+    'content-language',
+    'content-type',
+    'origin',
+    'authorization',
+    'dnt',
+    'user-agent',
+    'x-requested-with',
+    'x-csrftoken',
+]
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'PATCH',
+    'DELETE',
+    'OPTIONS',
+]
+CSRF_TRUSTED_ORIGINS = ['https://university-app-orges.vercel.app']
